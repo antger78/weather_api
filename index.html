@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dashboarch</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <header><h1>Weather Dashboard</h1></header>
+    <main>
+        <div class="col">
+            <aside class="col-lg-3 pb-4" >
+                <h2 id="searchHeading" class="mt-1 h3 form-label" >Search for a City</h2>
+                <input type="search" id="search-city">
+                <button>Search</button>
+                <hr class="weather-hr">
+                <div class="history" id="history"></div>
+            </aside>
+            <div class="col-lg-9 pb-4" id="rightside">
+                <div class="mt-1" id="today"></div>
+                <div class="mt-1" id="5-day">
+                    <div class="card" style="width: 18rem;">
+                        <h5 class="card-title" id="date-1">some date</h5>
+                        <div class="card-body">
+                          <img class="card-img" src="http://openweathermap.org/img/wn/10d@2x.png" alt="weather icon">
+                          <ul style="list-style-type:none;">
+                              <li>Temp</li>
+                              <li>Wind</li>
+                              <li>humidity</li>
+                          </ul>
+
+                        </div>
+                      </div>
+                    <!-- <card class="col-lg-2" id="day-1">1</card>
+                    <card class="col-lg-2" id="day-2">2</card>
+                    <card class="col-lg-2" id="day-3">3</card>
+                    <card class="col-lg-2" id="day-4">4</card>
+                    <card class="col-lg-2" id="day-5">5</card> -->
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

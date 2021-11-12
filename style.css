@@ -1,0 +1,29 @@
+header {
+    text-align: center;
+    background-color: blue;
+    color: white;
+    padding: 15px;
+}
+
+hr {
+    box-sizing: content-box;
+    /* 1 */
+    height: 0;
+    /* 1 */
+    overflow: visible;
+    /* 2 */
+  };
+  
+/* .weather-hr {
+    margin-left: 0.5rem;
+    width: 100%;
+  } */
+
+ul{
+    list-style-type:none;
+};
+
+li{
+    list-style-type:none;
+};
+  
