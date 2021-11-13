@@ -19,11 +19,11 @@ hr {
     width: 100%;
   } */
 
-ul{
+ul.li{
     list-style-type:none;
 };
 
-li{
-    list-style-type:none;
-};
-  
+.fiveday{
+    display: flex;
+    flex-direction: column;
+}
