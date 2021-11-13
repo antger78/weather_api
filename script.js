@@ -41,30 +41,50 @@ function search(cityName, latitude, longitude) {
       var longitude = data.coord.lon;
       // var uvIndex = data.current.uvi;
 //______________________________Weather for today 
-      var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+      var urlWeather = `https://api.openweathermap.org/data/2.5/onecall?lat=${latitude}&lon=${longitude}&units=imperial&appid=${apiKey}`;
 
       fetch(urlWeather)
         .then((res) => res.json())
         .then(function (data) {
           console.log(data.current.temp);
+          $("#temp-current").append(data.current.temp + " F");
           console.log(data.current.wind_speed);
+          $("#wind-current").append(data.current.wind_speed + " MPH");
           console.log(data.current.humidity);
+          $("#humidity-current").append(data.current.humidity + "%");
           console.log(data.current.uvi);
+          data.current.uvi = 6
+          $("#uvi-current").append(data.current.uvi);
+          if(data.current.uvi < 2){
+              $("#uvi-current").addClass("low"); $("#uvi-current").removeClass("medium"); $("#uvi-current").removeClass("high"); 
+          }
+          else if (2 < data.current.uvi && data.current.uvi < 5){
+            $("#uvi-current").removeClass("low"); $("#uvi-current").addClass("medium"); $("#uvi-current").removeClass("high"); 
+          }
+          else{
+            $("#uvi-current").removeClass("low"); $("#uvi-current").removeClass("medium"); $("#uvi-current").addClass("high"); 
+          };
         });
-      var urlFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${apiKey}`;
+      var urlFiveDay = `https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&units=imperial&appid=${apiKey}`;
       fetch(urlFiveDay)
         .then((res) => res.json())
         .then(function (data) {
           //______________Day 1
           console.log(data.list[0].dt_txt);
-          console.log(data.list[0].weather);
+          $("#date-1").append(data.list[0].dt_txt);
+          console.log(data.list[0].weather[0].main);
+          $("#forecast-1").attr("src", `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`).attr("alt", data.list[0].weather[0].main);
           console.log(data.list[0].main.temp);
+          $("#temp-day-1").append("Temp: " + data.list[0].main.temp + "F");
           console.log(data.list[0].main.humidity);
+          $("#humidity-day-1").append("Humidity: " + data.list[0].main.humidity + "%");
           console.log(data.list[0].wind.speed);
+          $("#wind-day-1").append("Wind: " + data.list[0].wind.speed + " MPH");
           //_______________Day 2
           console.log(data.list[8].dt_txt);
           console.log(data.list[8].weather);
           console.log(data.list[8].main.temp);
+          $("#temp-day-2").append(data.list[8].main.temp + "F");
           console.log(data.list[8].main.humidity);
           console.log(data.list[8].wind.speed);
           //_______________Day 3
@@ -99,7 +119,7 @@ const today = moment().format("LL");
 $("#currentDay").append("Today is: " + today);
 
 //event listener
-document.getElementById("button-addon2").addEventListener("click", search);
+// document.getElementById("button-addon2").addEventListener("click", search);
 
 //_____________________________________________________________________________________________
 

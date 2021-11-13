@@ -27,3 +27,20 @@ ul.li{
     display: flex;
     flex-direction: column;
 }
+
+.high{
+    background-color: red;
+}
+
+.medium{
+    background-color: yellow;
+}
+
+.low{
+    background-color: green;
+}
+.UV{
+    width: fit-content;
+    padding: 5px;
+    border-radius: 25%;
+}
