@@ -8,7 +8,7 @@ var url =
 
 // var urlLocation = "api.openweathermap.org/data/2.5/weather?q={city name}&appid= 02b2070ab2a3000118358e8e0fa9f65d"
 
-var cityName = "Los Angeles";
+// var cityName = "Los Angeles";
 
 //query selections
 var searchBtn = document.querySelector("button-addon2");
@@ -53,15 +53,13 @@ function search(cityName, latitude, longitude) {
           console.log(data.current.humidity);
           $("#humidity-current").append(data.current.humidity + "%");
           console.log(data.current.uvi);
-          data.current.uvi = 6
           $("#uvi-current").append(data.current.uvi);
+        //   if statement controling the uvi box
           if(data.current.uvi < 2){
               $("#uvi-current").addClass("low"); $("#uvi-current").removeClass("medium"); $("#uvi-current").removeClass("high"); 
-          }
-          else if (2 < data.current.uvi && data.current.uvi < 5){
+          } else if (2 < data.current.uvi && data.current.uvi < 5){
             $("#uvi-current").removeClass("low"); $("#uvi-current").addClass("medium"); $("#uvi-current").removeClass("high"); 
-          }
-          else{
+          } else{
             $("#uvi-current").removeClass("low"); $("#uvi-current").removeClass("medium"); $("#uvi-current").addClass("high"); 
           };
         });
@@ -74,37 +72,56 @@ function search(cityName, latitude, longitude) {
           $("#date-1").append(data.list[0].dt_txt);
           console.log(data.list[0].weather[0].main);
           $("#forecast-1").attr("src", `http://openweathermap.org/img/wn/${data.list[0].weather[0].icon}@2x.png`).attr("alt", data.list[0].weather[0].main);
-          console.log(data.list[0].main.temp);
-          $("#temp-day-1").append("Temp: " + data.list[0].main.temp + "F");
+          console.log(data.list[0].main.temp_max);
+          $("#temp-day-1").append("Temp: " + data.list[0].main.temp_max + "F");
           console.log(data.list[0].main.humidity);
           $("#humidity-day-1").append("Humidity: " + data.list[0].main.humidity + "%");
           console.log(data.list[0].wind.speed);
           $("#wind-day-1").append("Wind: " + data.list[0].wind.speed + " MPH");
           //_______________Day 2
           console.log(data.list[8].dt_txt);
-          console.log(data.list[8].weather);
-          console.log(data.list[8].main.temp);
-          $("#temp-day-2").append(data.list[8].main.temp + "F");
+          $("#date-2").append(data.list[8].dt_txt);
+          console.log(data.list[8].weather[0].main);
+          $("#forecast-2").attr("src", `http://openweathermap.org/img/wn/${data.list[8].weather[0].icon}@2x.png`).attr("alt", data.list[8].weather[0].main);
+          console.log(data.list[8].main.temp_max);
+          $("#temp-day-2").append("Temp: " + data.list[8].main.temp_max + "F");
           console.log(data.list[8].main.humidity);
+          $("#humidity-day-2").append("Humidity: " + data.list[8].main.humidity + "%");
           console.log(data.list[8].wind.speed);
+          $("#wind-day-2").append("Wind: " + data.list[8].wind.speed + " MPH");
           //_______________Day 3
           console.log(data.list[16].dt_txt);
-          console.log(data.list[16].weather);
-          console.log(data.list[16].main.temp);
+          $("#date-3").append(data.list[16].dt_txt);
+          console.log(data.list[16].weather[0].main);
+          $("#forecast-3").attr("src", `http://openweathermap.org/img/wn/${data.list[16].weather[0].icon}@2x.png`).attr("alt", data.list[16].weather[0].main);
+          console.log(data.list[16].main.temp_max);
+          $("#temp-day-3").append("Temp: " + data.list[16].main.temp_max + "F");
           console.log(data.list[16].main.humidity);
+          $("#humidity-day-3").append("Humidity: " + data.list[16].main.humidity + "%");
           console.log(data.list[16].wind.speed);
+          $("#wind-day-3").append("Wind: " + data.list[16].wind.speed + " MPH");
           //_______________Day 4
           console.log(data.list[24].dt_txt);
-          console.log(data.list[24].weather);
-          console.log(data.list[24].main.temp);
+          $("#date-4").append(data.list[24].dt_txt);
+          console.log(data.list[24].weather[0].main);
+          $("#forecast-4").attr("src", `http://openweathermap.org/img/wn/${data.list[24].weather[0].icon}@2x.png`).attr("alt", data.list[24].weather[0].main);
+          console.log(data.list[24].main.temp_max);
+          $("#temp-day-4").append("Temp: " + data.list[24].main.temp_max + "F");
           console.log(data.list[24].main.humidity);
+          $("#humidity-day-4").append("Humidity: " + data.list[24].main.humidity + "%");
           console.log(data.list[24].wind.speed);
+          $("#wind-day-4").append("Wind: " + data.list[24].wind.speed + " MPH");
           //_______________Day 5
           console.log(data.list[32].dt_txt);
-          console.log(data.list[32].weather);
-          console.log(data.list[32].main.temp);
+          $("#date-5").append(data.list[32].dt_txt);
+          console.log(data.list[32].weather[0].main);
+          $("#forecast-5").attr("src", `http://openweathermap.org/img/wn/${data.list[32].weather[0].icon}@2x.png`).attr("alt", data.list[32].weather[0].main);
+          console.log(data.list[32].main.temp_max);
+          $("#temp-day-5").append("Temp: " + data.list[32].main.temp_max + "F");
           console.log(data.list[32].main.humidity);
+          $("#humidity-day-5").append("Humidity: " + data.list[32].main.humidity + "%");
           console.log(data.list[32].wind.speed);
+          $("#wind-day-5").append("Wind: " + data.list[32].wind.speed + " MPH");
           // var latitude2= data.city.coord.lat;
           // var longitude2 = data.city.coord.lon;
         });
@@ -112,7 +129,7 @@ function search(cityName, latitude, longitude) {
 }
 
 // get the input first
-search("New York");
+search("Washington DC");
 
 // Get date at top of screen
 const today = moment().format("LL");    
