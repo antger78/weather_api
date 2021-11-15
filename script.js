@@ -3,33 +3,61 @@ let searchHistory = [];
 var citySearchEl = document.querySelector("#citysearch").value;
 
 var apiKey = "02b2070ab2a3000118358e8e0fa9f65d";
-console.log("Line 8");
 
-function store(cityName) {
+//function save history__________________________________________________________________
+function saveHistory(data) { 
+    searchHistory.push(data);
+    localStorage.setItem("searched-city", JSON.stringify(searchHistory));
+  }
+  
+  // function Load History________________________________________________________
+  function loadHistory() {
+    var history = localStorage.getItem("searched-city");
+    history = JSON.parse(history);
+    for(i in history) {
+      searchHistory.push(history[i]);
+    }
+  };
 
-    // append the cityName to an array
-    searchHistory.push(cityName);
+  
+///CREATE BUTTON FOR SEARCHES_________________________________________________
+function createButton(city) {
 
-    // check length of array and if 11 then remove first item
-    // if 11, also remove the first button of this class on the page
+    var buttonEl = document.createElement("button");
+    buttonEl.setAttribute("data-search", city);
+    buttonEl.textContent = city;
+    buttonEl.className = "btn btn-dark m-2"
+    $("#history").append(buttonEl);
+  }
+  
+  function historyBtn() {
+    // for (i = 0; i < searchHistory.length; i++)
+    for (i in searchHistory) {
+      createButton(searchHistory[i]) 
+    }
+  };
 
-    // create a button on the page with cityName as text
 
-    // add eventListener to button which calls search on the cityName when clicked
+// function store(cityName) {
+
+//     // append the cityName to an array
+//     searchHistory.push(cityName);
+
+//     // check length of array and if 11 then remove first item
+//     // if 11, also remove the first button of this class on the page
+
+//     // create a button on the page with cityName as text
+
+//     // add eventListener to button which calls search on the cityName when clicked
     
-};
+// };
 
 function search(cityName, latitude, longitude) {
-  console.log("here");
-
-  store(cityName);
-
-
   var urlLocation = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
   fetch(urlLocation)
     .then((res) => res.json())
     .then(function (data) {
-      console.log(data.coord);
+
       var latitude = data.coord.lat;
       var longitude = data.coord.lon;
       // var uvIndex = data.current.uvi;
@@ -117,13 +145,19 @@ function search(cityName, latitude, longitude) {
           $("#wind-day-5").empty().append("Wind: " + data.list[32].wind.speed + " MPH");
           // var latitude2= data.city.coord.lat;
           // var longitude2 = data.city.coord.lon;
+          var searchedCity = $("#citysearch").val();
+          saveHistory(searchedCity);
+          console.log(searchHistory);
         });
     });
 };
 
+function clearHistory() {
+    localStorage.clear();
+    location.reload();
+  };
 
-document.getElementById("citybtn").addEventListener("click", 
-    function() {
+document.getElementById("searchBtn").addEventListener("click", function() {
         console.log('Search button clicked');
         var citySearchEl = document.querySelector("#citysearch").value;
         console.log('Running search function');
@@ -132,9 +166,22 @@ document.getElementById("citybtn").addEventListener("click",
 );
 
 
+
+
 // Get date at top of screen
 const today = moment().format("LL");    
 $("#currentDay").empty().append("Today is: " + today);
+
+//event listener
+$(document).on("click",".btn", function() {
+    console.log("IN BUTTON FUNCTION");
+    var citySearchEl = $(this).attr("data-search");
+    search(citySearchEl);
+  })
+  
+  loadHistory();
+  //called function_________________________________________________________________
+  historyBtn();
 
 
 //event listener
