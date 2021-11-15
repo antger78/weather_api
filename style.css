@@ -1,6 +1,6 @@
 header {
     text-align: center;
-    background-color: blue;
+    background-image:  linear-gradient(to right, orange, navy);
     color: white;
     padding: 15px;
 }

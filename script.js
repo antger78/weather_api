@@ -5,18 +5,25 @@ var citySearchEl = document.querySelector("#citysearch").value;
 var apiKey = "02b2070ab2a3000118358e8e0fa9f65d";
 console.log("Line 8");
 
+function store(cityName) {
+
+    // append the cityName to an array
+    searchHistory.push(cityName);
+
+    // check length of array and if 11 then remove first item
+    // if 11, also remove the first button of this class on the page
+
+    // create a button on the page with cityName as text
+
+    // add eventListener to button which calls search on the cityName when clicked
+    
+};
+
 function search(cityName, latitude, longitude) {
   console.log("here");
 
-  // var urlFiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+  store(cityName);
 
-  // fetch(urlFiveDay)
-  //   .then((res) => res.json())
-  //   .then(function (data) {
-  //     console.log(data);
-  //     // var latitude = data.coord.lat;
-  //     // var longitude = data.coord.lon;
-  //   });
 
   var urlLocation = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${apiKey}`;
   fetch(urlLocation)
@@ -114,8 +121,6 @@ function search(cityName, latitude, longitude) {
     });
 };
 
-// get the input first
-// search()
 
 document.getElementById("citybtn").addEventListener("click", 
     function() {
@@ -135,6 +140,8 @@ $("#currentDay").empty().append("Today is: " + today);
 //event listener
 // document.getElementById("button-addon2").addEventListener("click", search);
 
+// get the input first
+// search()
 //_____________________________________________________________________________________________
 
 //query selector, grab "button addon-2"
@@ -154,3 +161,12 @@ $("#currentDay").empty().append("Today is: " + today);
 // function selectCity() {
 //     var
 // }
+  // var urlFiveDay = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}`;
+
+  // fetch(urlFiveDay)
+  //   .then((res) => res.json())
+  //   .then(function (data) {
+  //     console.log(data);
+  //     // var latitude = data.coord.lat;
+  //     // var longitude = data.coord.lon;
+  //   });
